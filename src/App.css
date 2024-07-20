@@ -1,0 +1,40 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.heading {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.color {
+    width: 25px;
+}
+
+.util {
+    display: flex;
+    justify-content: center;
+}
+
+.util>div {
+    align-items: center;
+    display: flex;
+    margin: 20px;
+}
+.utilButton{
+    background-color: blue;
+    color: white;
+    font-size: 19px;
+    border-radius: 6px;
+    border: none;
+    height: 50px;
+}
+.utilButton:hover {background-color: #7a7ae9}

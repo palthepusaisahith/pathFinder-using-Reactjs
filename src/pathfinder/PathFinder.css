@@ -1,0 +1,27 @@
+.grid {
+    /* width: 1125px; */
+    display: grid;
+    grid-template-columns: repeat(45, 1fr);
+    margin: auto;
+}
+
+.pathFindWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.desc_button{
+    width: 18%;
+    padding: 1rem;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    
+    border: none;
+
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+
+}
