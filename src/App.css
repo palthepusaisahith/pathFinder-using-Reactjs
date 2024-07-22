@@ -1,3 +1,4 @@
+/* Styles for the main container, centered both vertically and horizontally */
 .main {
     display: flex;
     justify-content: center;
@@ -5,31 +6,38 @@
     margin-top: 3rem;
 }
 
+/* General styles for the body, including background color and font family */
 body {
     background-color: #f0f2f5;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Styles for heading elements, centered and uppercase */
 .heading {
     text-align: center;
     text-transform: uppercase;
 }
 
+/* Styles for elements with the 'color' class, specifically setting their width */
 .color {
     width: 25px;
 }
 
+/* Utility container with flexbox for horizontal centering */
 .util {
     display: flex;
     justify-content: center;
 }
 
+/* Styles for child divs within the utility container, centering content and adding margin */
 .util>div {
     align-items: center;
     display: flex;
     margin: 20px;
 }
-.utilButton{
+
+/* Styles for buttons within the utility container, including background color, text color, font size, border radius, and height */
+.utilButton {
     background-color: blue;
     color: white;
     font-size: 19px;
@@ -37,4 +45,8 @@ body {
     border: none;
     height: 50px;
 }
-.utilButton:hover {background-color: #7a7ae9}
+
+/* Hover effect for buttons, changing the background color */
+.utilButton:hover {
+    background-color: #7a7ae9;
+}
