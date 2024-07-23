@@ -1,27 +1,36 @@
 .grid {
+    /* Defining a CSS grid layout */
     /* width: 1125px; */
     display: grid;
+    /* Creating 45 equal-width columns */
     grid-template-columns: repeat(45, 1fr);
+    /* Centering the grid within its container */
     margin: auto;
 }
 
 .pathFindWrapper {
+    /* Using flexbox layout for the container */
     display: flex;
+    /* Arranging children in a column */
     flex-direction: column;
 }
 
-.desc_button{
+.desc_button {
+    /* Setting the width of the button */
     width: 18%;
+    /* Adding padding inside the button */
     padding: 1rem;
+    /* Adding margin below the button */
     margin-bottom: 20px;
+    /* Adding margin to the left of the button */
     margin-left: 10px;
-    
+    /* Removing the default border of the button */
     border: none;
-
 }
 
 .buttons {
+    /* Using flexbox layout for the container */
     display: flex;
+    /* Centering the buttons within their container */
     justify-content: center;
-
 }

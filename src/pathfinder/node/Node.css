@@ -1,15 +1,17 @@
 .node {
+    /* Define the size of the node */
     width: 25px;
     height: 25px;
+    /* Set the border for the node */
     border: 2px solid black;
+    /* Use flexbox to center align content inside the node */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-
-
 .visited {
+    /* Define the animation for visited nodes */
     animation-name: visitNode;
     animation-duration: 1.5s;
     animation-timing-function: ease-out;
@@ -18,10 +20,10 @@
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
     animation-play-state: running;
-
 }
 
 .path {
+    /* Define the animation for nodes in the shortest path */
     animation-name: shortestPath;
     animation-duration: 1.5s;
     animation-timing-function: ease-out;
@@ -33,16 +35,20 @@
 }
 
 .current {
+    /* Define the animation for the current node (if applicable) */
     animation-name: current;
     animation-duration: 1.5s;
 }
 
 .wall {
+    /* Define the background color for wall nodes */
     background-color: #02030a;
 }
 
+/* Keyframes for current node animation (currently empty) */
 @keyframes current {}
 
+/* Keyframes for visitNode animation */
 @keyframes visitNode {
     0% {
         background-color: red;
@@ -74,6 +80,7 @@
     }
 }
 
+/* Keyframes for shortestPath animation */
 @keyframes shortestPath {
     0% {
         transform: scale(0.2);
@@ -92,5 +99,6 @@
 }
 
 .white {
+    /* Define the background color for white nodes */
     background-color: white;
 }

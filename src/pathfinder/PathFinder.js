@@ -7,12 +7,11 @@ import Button from 'react-bootstrap/Button';
 
 import './PathFinder.css';
 
-
+// Constants for start and end node positions, as well as grid dimensions
 const START_ROW = 5;
 const START_COL = 3;
 const END_ROW = 9;
 const END_COL = 34;
-
 const ROWS = 15;
 const COLS = 45;
 
@@ -23,11 +22,12 @@ const PathFinder = () => {
     const [wallCreationStarted, setWallCreation] = useState(false);
     const [clearBoard, setClearboard] = useState(true);
 
-
     const bounds = {
         rowSize: ROWS,
         colSize: COLS
-    }
+    };
+
+    // useEffect to initialize the grid with nodes when the component mounts
     useEffect(() => {
         const arr = [];
         for (let row = 0; row < ROWS; row++) {
@@ -44,7 +44,7 @@ const PathFinder = () => {
                     distance: Infinity,
                     front: null,
                     back: null
-                }
+                };
                 if (currNode.isStart) {
                     setStartNode(currNode);
                 }
@@ -58,20 +58,22 @@ const PathFinder = () => {
         setGrid(arr);
     }, []);
 
+    // Function to toggle wall state for a specific node
     const getNewGrid = (row, col) => {
         let arr = [...grid];
         arr[row][col].wall = !arr[row][col].wall;
         const node = document.getElementById(`${row}-${col}`);
         node.classList.toggle('wall');
         setGrid(arr);
-    }
+    };
 
+    // Handlers for mouse events to create walls
     const mouseDownHandler = (row, col) => {
         if (!(row === START_ROW && col === START_COL) && !(row === END_ROW && col === END_COL)) {
             getNewGrid(row, col);
             setWallCreation(true);
         }
-    }
+    };
 
     const mouseEnterHandler = (row, col) => {
         if (wallCreationStarted) {
@@ -79,18 +81,20 @@ const PathFinder = () => {
                 getNewGrid(row, col);
             }
         }
-    }
+    };
 
     const mouseLeaveHandler = () => {
         setWallCreation(false);
-    }
+    };
 
+    // Function to render nodes
     const renderNodes = () => {
         return grid.map((row) => {
             return row.map((cell) => {
                 const { row, col, isStart, isEnd, isVisited } = cell;
                 return (
                     <Node
+                        key={`${row}-${col}`}
                         row={row}
                         col={col}
                         isStart={isStart}
@@ -101,11 +105,12 @@ const PathFinder = () => {
                         onMouseEnterHandler={mouseEnterHandler}
                         onMouseLeaveHandler={mouseLeaveHandler}
                     />
-                )
+                );
             });
         });
-    }
+    };
 
+    // Functions to animate BFS, Dijkstra, and Bi-directional BFS algorithms
     const animateBFS = (visitedArr, path) => {
         for (let i = 0; i < visitedArr.length; i++) {
             for (let j = 0; j < visitedArr[i].length; j++) {
@@ -126,10 +131,9 @@ const PathFinder = () => {
 
             }
         }
-    }
+    };
 
     const animateDjikstra = (visitedArr, path) => {
-
         for (let i = 0; i < visitedArr.length; i++) {
             if (i === visitedArr.length - 1) {
                 setTimeout(() => {
@@ -148,13 +152,12 @@ const PathFinder = () => {
             }, 15 * i);
 
         }
-    }
+    };
 
     const animateBiBFS = (result) => {
         let visStart = result.visStart;
         let visEnd = result.visEnd;
 
-        // let n = Math.max(visStart.length, visEnd.length);
         for (let i = 0; i < visStart.length; i++) {
             for (let j = 0; j < visStart[i].length; j++) {
                 if ((i === visStart.length - 1) && (j === visStart[i].length - 1)) {
@@ -194,10 +197,10 @@ const PathFinder = () => {
 
             }
         }
-    }
+    };
 
+    // Function to animate the shortest path
     const animateShortestPath = (path) => {
-        console.log(path);
         for (let i = 0; i < path.length; i++) {
             setTimeout(() => {
                 const row = path[i].row;
@@ -208,65 +211,56 @@ const PathFinder = () => {
                 node.classList.add('path');
             }, 50 * i);
         }
-    }
+    };
 
-
-
+    // Handlers for button clicks to start algorithm animations
     const handleOnClickBFS = () => {
         if (clearBoard) {
             const visitedArr = BFS(grid, startNode, endNode, bounds);
             const path = getPathBFS(endNode);
             animateBFS(visitedArr, path);
             setClearboard(false);
-        }
-        else {
+        } else {
             alert("Please clear the board first");
         }
-    }
+    };
 
     const handleOnClickDijkstra = () => {
         if (clearBoard) {
             const visitedArr = djikstra(grid, startNode, endNode, bounds);
             const path = getPathDjikstra(endNode);
-            console.log(visitedArr);
-            console.log(path);
             animateDjikstra(visitedArr, path);
             setClearboard(false);
-
-        }
-        else {
+        } else {
             alert("please clear the board first");
         }
-
-    }
+    };
 
     const handleOnClickBiBFS = () => {
         if (clearBoard) {
             const result = BiBFS(grid, startNode, endNode, bounds);
-            console.log(result);
             if (result.point) {
                 result.path = getPathBiBFS(result.point);
             }
             animateBiBFS(result);
             setClearboard(false);
-        }
-        else {
+        } else {
             alert("please clear the board first");
         }
-
-    }
+    };
 
     return (
         <div className='pathFindWrapper'>
             <div className='buttons'>
-                <Button variant="success" className='desc_button' onClick={handleOnClickBFS} > Visualize BFS </Button>
-                <Button variant="success" className='desc_button'onClick={handleOnClickDijkstra}> Visualize Djikstra </Button>
-                <Button variant="success" className='desc_button'onClick={handleOnClickBiBFS}> Visualize Bi-directional BFS </Button>
+                <Button variant="success" className='desc_button' onClick={handleOnClickBFS}> Visualize BFS </Button>
+                <Button variant="success" className='desc_button' onClick={handleOnClickDijkstra}> Visualize Djikstra </Button>
+                <Button variant="success" className='desc_button' onClick={handleOnClickBiBFS}> Visualize Bi-directional BFS </Button>
             </div>
             <div className='grid'>
                 {renderNodes()}
             </div>
         </div>
-    )
-}
+    );
+};
+
 export default PathFinder;
