@@ -45,6 +45,13 @@ CSS-Tricks
 MDN Web Docs - JavaScript
 
 Bidirectional Search - Wikipedia
+
+
+## 👥 Contributors
+
+- [Sai Sahith](https://github.com/palthepusaisahith)
+- [Sathwika Sanganabhatla](https://github.com/Sathwika-11)
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
